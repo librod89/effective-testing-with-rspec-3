@@ -23,13 +23,7 @@ module ExpenseTracker
 
     get '/expenses/:date' do
       result = @ledger.expenses_on(params[:date])
-
-      if result.success?
-        JSON.generate('expenses' => result.expenses)
-      else
-        status 422
-        JSON.generate('error' => result.error_message)
-      end
+      JSON.generate(result)
     end
   end
 end

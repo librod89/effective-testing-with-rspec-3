@@ -1,6 +1,5 @@
 module ExpenseTracker
   RecordResult = Struct.new(:success?, :expense_id, :error_message)
-  ExpensesOnResult = Struct.new(:success?, :expenses, :error_message)
 
   class Ledger
     def record(expense)

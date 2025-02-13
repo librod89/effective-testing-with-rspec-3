@@ -56,12 +56,12 @@ module ExpenseTracker
         before do
           allow(ledger).to receive(:expenses_on)
             .with('2017-06-12')
-            .and_return(ExpensesOnResult.new(true, [expense], nil))
+            .and_return([expense])
         end
 
         it 'returns the expense records as JSON' do
           get '/expenses/2017-06-12'
-          expect(parsed_body).to include('expenses' => [expense])
+          expect(parsed_body).to include(expense)
         end
 
         it 'responds with a 200 (OK)' do
@@ -74,12 +74,12 @@ module ExpenseTracker
         before do
           allow(ledger).to receive(:expenses_on)
             .with('2017-06-12')
-            .and_return(ExpensesOnResult.new(true, [], nil))
+            .and_return([])
         end
 
         it 'returns an empty array as JSON' do
           get '/expenses/2017-06-12'
-          expect(parsed_body).to include('expenses' => [])
+          expect(parsed_body).to be_empty
         end
 
         it 'responds with a 200 (OK)' do
