@@ -6,6 +6,9 @@ GEM
     diff-lcs (1.5.1)
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
+    nio4r (2.7.4)
+    puma (6.6.0)
+      nio4r (~> 2.0)
     rack (2.2.10)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
@@ -38,6 +41,7 @@ PLATFORMS
 
 DEPENDENCIES
   coderay
+  puma
   rack-test
   rspec
   sinatra

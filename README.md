@@ -6,7 +6,7 @@ This project follows along with the book to create an expense tracker app using 
 
 ## Run the app
 
-bundle exec rackup
+bundle exec puma
 
 ## Drive the app using cURL
 
