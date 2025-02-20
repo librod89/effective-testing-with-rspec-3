@@ -30,6 +30,17 @@ module ExpenseTracker
           post '/expenses', JSON.generate(expense)
           expect(last_response.status).to eq(200)
         end
+
+        context 'when the format is XML' do
+          let(:expense_xml) { '<some>data</some>' }
+          let(:expense) { { :some => 'data' } }
+
+          it 'returns the expense id' do
+            header('Content-Type', 'text/xml')
+            post '/expenses', expense_xml
+            expect(parsed_body).to include('expense_id' => 417)
+          end
+        end
       end
 
       context 'when the expense fails validation' do

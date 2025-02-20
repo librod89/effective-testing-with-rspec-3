@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'json'
+require 'ox'
 require_relative 'ledger'
 
 module ExpenseTracker
@@ -10,7 +11,12 @@ module ExpenseTracker
     end
 
     post '/expenses' do
-      expense = JSON.parse(request.body.read)
+      if request.media_type == 'text/xml'
+        expense = Ox.load(request.body.string, mode: :hash)
+      else
+        expense = JSON.parse(request.body.read)
+      end
+
       result = @ledger.record(expense)
 
       if result.success?
